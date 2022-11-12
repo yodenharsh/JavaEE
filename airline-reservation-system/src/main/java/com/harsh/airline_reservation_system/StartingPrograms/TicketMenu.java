@@ -37,6 +37,11 @@ public class TicketMenu {
 					System.out.println("Booking unsuccessful - Internal error");
 				}
 				break;
+			case 2: //TODO cancel flight
+				break;
+			case 3: //TODO view booked flights
+				break;
+			case 0: break;
 			}
 		} while (choice != 0);
 		sc.close();
@@ -87,14 +92,14 @@ public class TicketMenu {
 			do {
 			System.out.println("Enter month");
 			month = sc.nextInt();
-			}while(month>=1 && month<=12);
+			}while(!(month>=1 && month<=12));
 			do {
 				System.out.println("Enter day of month");
 				dayOfMonth = sc.nextInt();
-			}while(dayOfMonth>=1 && dayOfMonth<=30);
+			}while(!(dayOfMonth>=1 && dayOfMonth<=30));
 			
 			dateDeparture = LocalDate.of(year, month, dayOfMonth);
-		}while(dateNow.compareTo(dateDeparture) <=0);
+		}while(dateNow.compareTo(dateDeparture) >=0);
 		return new ReservationInfo(email, to, from, people, dateDeparture);
 	}
 }

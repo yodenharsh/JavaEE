@@ -3,6 +3,8 @@ package com.harsh.airline_reservation_system.Operations;
 import java.sql.Connection;
 import java.util.Random;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.harsh.airline_reservation_system.ReservationInfo;
 
@@ -16,7 +18,18 @@ public class BookingOperationsImpl implements BookingOperationsInterface {
 		int tripId = Math.abs((new Random()).nextInt());
 
 		String query = "INSERT INTO reservationsList VALUES(" + tripId + ",'" + reservationInfo.email() + "','"
-				+ reservationInfo.to() + "','"+reservationInfo.from()+"',"+reservationInfo.people();
+				+ reservationInfo.to() + "','" + reservationInfo.from() + "'," + reservationInfo.people() + ",'" + year
+				+ "-" + month + "-" + dayOfMonth + "')";
+
+		try (Statement stmt = conn.createStatement()) {
+				if(stmt.executeUpdate(query) == 1)
+					return true;
+		} catch (SQLException e) {
+			System.out.println("Internal server error");
+			e.printStackTrace();
+			return false;
+		}
+
 		return false;
 	}
 
