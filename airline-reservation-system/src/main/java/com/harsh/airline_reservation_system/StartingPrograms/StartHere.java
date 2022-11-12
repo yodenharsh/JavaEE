@@ -21,7 +21,7 @@ public class StartHere {
 			if (!isAuth)
 				System.out.println(" 1. Signin\n 2. Signup\n 3. Forgot Password");
 			if (isAuth)
-				System.out.println(" 4. Change Password\n 5. Logout\n");
+				System.out.println(" 4. Change Password\n 5. Logout\n\n\n 10. Book flight");
 			choice = sc.nextInt();
 			switch (choice) {
 			case 1:
@@ -52,7 +52,7 @@ public class StartHere {
 			case 3:
 				System.out.println("Enter email");
 				email = sc.next().trim();
-				System.out.println("Please check your inbox for a changing password, " + email);
+				ops.forgotPassword(email, conn);
 				break;
 			case 4:
 				if (!isAuth) {
@@ -73,6 +73,15 @@ public class StartHere {
 					break;
 				}
 				isAuth = false;
+				break;
+			case 10:
+				if (!isAuth) {
+					System.out.println("Invalid choice");
+					break;
+				}
+				TicketMenu ticketMenu = new TicketMenu(conn, userInfo.email());
+				ticketMenu.ticketMenu();
+				break;
 			case 0:
 				System.out.println("\nThank you for using our sevice");
 				break;

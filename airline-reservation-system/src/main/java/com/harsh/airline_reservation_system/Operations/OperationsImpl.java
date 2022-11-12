@@ -61,8 +61,7 @@ public class OperationsImpl implements AuthOperationsInterface {
 
 	@Override
 	public boolean forgotPassword(String email, Connection conn) {
-		// TODO Auto-generated method stub
-		return false;
+		System.out.println("Please check your inbox for a changing password, " + email);		return false;
 	}
 
 }
