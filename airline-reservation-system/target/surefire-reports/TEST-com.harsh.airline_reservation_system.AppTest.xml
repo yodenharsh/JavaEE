@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="1" failures="0" name="com.harsh.airline_reservation_system.AppTest" time="0.004" errors="0" skipped="0">
+<testsuite tests="1" failures="0" name="com.harsh.airline_reservation_system.AppTest" time="0.003" errors="0" skipped="0">
   <properties>
     <property name="jansi.mode" value="force"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
@@ -23,7 +23,7 @@
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="os.name" value="Linux"/>
-    <property name="classworlds.conf" value="/home/yodenharsh/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf10982321503859727184.tmp"/>
+    <property name="classworlds.conf" value="/home/yodenharsh/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.launching/launches/m2conf14647444914196751948.tmp"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
     <property name="java.library.path" value="/usr/java/packages/lib:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
     <property name="jdk.debug" value="release"/>
@@ -55,5 +55,5 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="sun.cpu.endian" value="little"/>
   </properties>
-  <testcase classname="com.harsh.airline_reservation_system.AppTest" name="testApp" time="0.004"/>
+  <testcase classname="com.harsh.airline_reservation_system.AppTest" name="testApp" time="0.003"/>
 </testsuite>
