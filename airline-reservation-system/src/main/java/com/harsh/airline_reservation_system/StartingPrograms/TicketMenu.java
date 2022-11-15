@@ -1,10 +1,13 @@
 package com.harsh.airline_reservation_system.StartingPrograms;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.Scanner;
 
 import com.harsh.airline_reservation_system.ReservationInfo;
+import com.harsh.airline_reservation_system.CustomExceptions.NoTripsFoundException;
+import com.harsh.airline_reservation_system.CustomExceptions.TripIdNotFoundException;
 import com.harsh.airline_reservation_system.Operations.BookingOperationsImpl;
 
 public class TicketMenu {
@@ -30,21 +33,38 @@ public class TicketMenu {
 			switch (choice) {
 			case 1:
 				var reservationInfo = bookTicketInput(email, sc);
-				if(bOps.bookTicket(reservationInfo, conn)) {
+				if (bOps.bookTicket(reservationInfo, conn)) {
 					System.out.println("Booking successful");
-				}
-				else {
+				} else {
 					System.out.println("Booking unsuccessful - Internal error");
 				}
 				break;
-			case 2: //TODO cancel flight
+			case 2:
+				System.out.println(
+						"Need trip ID for this proceeding. Please choose view trips to view all trips along with their ID");
+				System.out.println("Enter trip ID (-1 to exit)");
+				int tripID = sc.nextInt();
+				if(tripID != -1)
+				try {
+					bOps.cancelReservation(tripID, email, conn);
+					System.out.println("Trip successfully cancelled");
+				} catch (TripIdNotFoundException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
-			case 3: //TODO view booked flights
+			case 3: 
+				try {
+					ResultSet tripsList = bOps.getReservations(email, conn);
+					bOps.viewTrips(tripsList);
+				} catch (NoTripsFoundException e) {
+					System.out.println("No flight trips were booked");
+				}
 				break;
-			case 0: break;
+			case 0:
+				break;
 			}
 		} while (choice != 0);
-		sc.close();
+		
 	}
 
 	private static ReservationInfo bookTicketInput(String email, Scanner sc) {
@@ -78,7 +98,7 @@ public class TicketMenu {
 			default -> "";
 			};
 		} while (from.equals("") || from.equals(to));// invalid choice or to == from
-		
+
 		System.out.println("Enter number of people");
 		int people = sc.nextInt();
 		LocalDate dateNow = LocalDate.now();
@@ -86,20 +106,20 @@ public class TicketMenu {
 		do {
 			System.out.println("Enter a valid date in the future");
 			do {
-			System.out.println("Enter year");
-			year = sc.nextInt();
-			}while(year<2000 || year>dateNow.getYear() + 6);
+				System.out.println("Enter year");
+				year = sc.nextInt();
+			} while (year < 2000 || year > dateNow.getYear() + 6);
 			do {
-			System.out.println("Enter month");
-			month = sc.nextInt();
-			}while(!(month>=1 && month<=12));
+				System.out.println("Enter month");
+				month = sc.nextInt();
+			} while (!(month >= 1 && month <= 12));
 			do {
 				System.out.println("Enter day of month");
 				dayOfMonth = sc.nextInt();
-			}while(!(dayOfMonth>=1 && dayOfMonth<=30));
-			
+			} while (!(dayOfMonth >= 1 && dayOfMonth <= 30));
+
 			dateDeparture = LocalDate.of(year, month, dayOfMonth);
-		}while(dateNow.compareTo(dateDeparture) >=0);
+		} while (dateNow.compareTo(dateDeparture) >= 0);
 		return new ReservationInfo(email, to, from, people, dateDeparture);
 	}
 }

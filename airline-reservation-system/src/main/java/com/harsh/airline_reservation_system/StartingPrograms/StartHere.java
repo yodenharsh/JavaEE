@@ -21,7 +21,7 @@ public class StartHere {
 			if (!isAuth)
 				System.out.println(" 1. Signin\n 2. Signup\n 3. Forgot Password");
 			if (isAuth)
-				System.out.println(" 4. Change Password\n 5. Logout\n\n\n 10. Book flight");
+				System.out.println(" 4. Change Password\n 5. Logout\n\n\n 10. Book and view flights");
 			choice = sc.nextInt();
 			switch (choice) {
 			case 1:

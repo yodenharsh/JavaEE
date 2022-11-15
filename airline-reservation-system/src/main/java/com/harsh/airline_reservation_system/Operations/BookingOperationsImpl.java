@@ -1,12 +1,17 @@
 package com.harsh.airline_reservation_system.Operations;
 
 import java.sql.Connection;
-import java.util.Random;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
+import com.bethecoder.ascii_table.ASCIITable;
 import com.harsh.airline_reservation_system.ReservationInfo;
+import com.harsh.airline_reservation_system.CustomExceptions.NoTripsFoundException;
+import com.harsh.airline_reservation_system.CustomExceptions.TripIdNotFoundException;
 
 public class BookingOperationsImpl implements BookingOperationsInterface {
 
@@ -34,15 +39,69 @@ public class BookingOperationsImpl implements BookingOperationsInterface {
 	}
 
 	@Override
-	public boolean cancelReservation(long tripID) {
-		// TODO Auto-generated method stub
+	public boolean cancelReservation(int tripId,String email, Connection conn) throws TripIdNotFoundException {
+		String deleteQuery = "DELETE FROM reservationsList WHERE tripId = "+tripId+" AND email = '"+email+"'" ;
+		try(Statement stmt = conn.createStatement()) {
+			int rowsAffected = stmt.executeUpdate(deleteQuery);
+			if(rowsAffected == 0)
+				throw new TripIdNotFoundException("The TripID is invalid");
+			return true;
+		} catch (SQLException e) {
+			System.out.println("Internal SQL error");
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
-	public ResultSet getReservations(String email) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResultSet getReservations(String email, Connection conn) throws NoTripsFoundException {
+		String query = "SELECT * FROM reservationsList WHERE email = '"+ email + "'";
+		try{
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			if(rs.equals(null) || !rs.next())
+				throw new NoTripsFoundException(query);
+			else {
+				return rs;
+			}
+		} catch(SQLException e) {
+			System.out.println("Internal SQL error");
+			e.printStackTrace();
+		}
+		catch(NoTripsFoundException e) {
+			throw new NoTripsFoundException("No flight trips were booked with this account");
+		}
+		catch(Exception e) {
+			System.out.println("Internal servel error");
+		}
+		return null; //Should be unreachable, I think
+	}
+
+
+	@Override
+	public void viewTrips(ResultSet tripsList) {
+		String[] tripHeaders = {"Flight Trip ID","Destination","Boarding Point","People","Date (YYYY-MM-DD)"};
+		List<List<String>> list = new ArrayList<>();
+		try {
+			do {
+				List<String> trip = new ArrayList<>();
+				trip.add(String.valueOf(tripsList.getInt("tripId")));
+				trip.add(tripsList.getString("toWhere"));
+				trip.add(tripsList.getString("fromWhere"));
+				trip.add(String.valueOf(tripsList.getInt("people")));
+				trip.add(String.valueOf(tripsList.getDate("date")));
+				list.add(trip);
+			} while((tripsList.next()));
+			String[][] tripArray = list.stream()
+	                .map(l -> l.toArray(new String[l.size()]))
+	                .toArray(String[][]::new);
+			ASCIITable.getInstance().printTable(tripHeaders, tripArray);
+		} catch (SQLException e) {
+			System.out.println("Internal SQL error");
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }
