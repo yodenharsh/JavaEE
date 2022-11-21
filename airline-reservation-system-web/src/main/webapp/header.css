@@ -1,0 +1,28 @@
+.header {
+  background-color: rgb(137, 233, 137);
+  vertical-align: middle;
+  display: table-cell;
+  width: 1920px;
+}
+
+.header > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.main-nav {
+  display: inline-block;
+  text-align: right;
+  width: calc(100% - 74px);
+  vertical-align: middle;
+}
+
+.main-nav__item {
+  display: inline-block;
+  margin: 0px 16px;
+}
+.main-nav__items {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
