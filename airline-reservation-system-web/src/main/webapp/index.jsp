@@ -31,7 +31,7 @@
 					</div>
 					<button value="Submit" type="submit" class="btn btn-primary mt-5">Login</button>
 				</form>
-				<a href="signup.php" class="card-link link-danger">Don't have an
+				<a href="signup.jsp" class="card-link link-danger">Don't have an
 					account? Sign up</a>
 			</div>
 		</div>

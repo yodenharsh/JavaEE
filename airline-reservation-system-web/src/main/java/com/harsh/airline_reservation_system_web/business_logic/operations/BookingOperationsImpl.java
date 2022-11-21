@@ -79,6 +79,7 @@ public class BookingOperationsImpl implements BookingOperationsInterface {
 
 	@Override
 	public void viewTrips(ResultSet tripsList) {
+		@SuppressWarnings("unused")
 		String[] tripHeaders = {"Flight Trip ID","Destination","Boarding Point","People","Date (YYYY-MM-DD)"};
 		List<List<String>> list = new ArrayList<>();
 		try {
@@ -91,6 +92,7 @@ public class BookingOperationsImpl implements BookingOperationsInterface {
 				trip.add(String.valueOf(tripsList.getDate("date")));
 				list.add(trip);
 			} while((tripsList.next()));
+			@SuppressWarnings("unused")
 			String[][] tripArray = list.stream()
 	                .map(l -> l.toArray(new String[l.size()]))
 	                .toArray(String[][]::new);

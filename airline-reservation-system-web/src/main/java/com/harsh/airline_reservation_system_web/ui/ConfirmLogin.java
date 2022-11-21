@@ -3,10 +3,8 @@ package com.harsh.airline_reservation_system_web.ui;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
-import java.util.Properties;
 
-import com.harsh.airline_reservation_system_web.business_logic.connectToDB.ConnectToDB;
-import com.harsh.airline_reservation_system_web.business_logic.misc.GetDBDetailsFromProperties;
+import com.harsh.airline_reservation_system_web.business_logic.misc.GetConnection;
 import com.harsh.airline_reservation_system_web.business_logic.operations.OperationsImpl;
 import com.harsh.airline_reservation_system_web.business_logic.records.UserInfo;
 
@@ -22,14 +20,13 @@ public class ConfirmLogin extends HttpServlet {
 
     public ConfirmLogin() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		Connection conn = getConnection(email, password);
+		Connection conn = GetConnection.getConnection();
 		UserInfo userInfo = new UserInfo(email, password);
 		OperationsImpl bOps = new OperationsImpl();
 		PrintWriter writer = response.getWriter();
@@ -37,9 +34,11 @@ public class ConfirmLogin extends HttpServlet {
 			writer.println("Successfully logged in");
 			try {
 				Cookie emailCookie = new Cookie("email", email);
+				Cookie passwordCookie = new Cookie("password",password);
 				Cookie isAuthCookie = new Cookie("isAuth", "true");
 				response.addCookie(isAuthCookie);
 				response.addCookie(emailCookie);
+				response.addCookie(passwordCookie);
 				Thread.sleep(500);
 				response.sendRedirect("loginConfirm.jsp");
 			} catch (InterruptedException e) {
@@ -51,12 +50,5 @@ public class ConfirmLogin extends HttpServlet {
 		writer.close();
 	}
 	
-	private static Connection getConnection(String email, String password) {
-		Properties info = (new GetDBDetailsFromProperties()).getDBDetails();
-		String url = info.getProperty("address") + info.getProperty("db.name") + "?autoReconnect=true";
-		Connection conn = (new ConnectToDB()).connect(url, info);
-		return conn;
-
-	}
 
 }
