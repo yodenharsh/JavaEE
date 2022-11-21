@@ -49,8 +49,8 @@
 			<div class="mt-2">
 				<label for="from" class="h3">From </label> <select name="from"
 					class="selectpicker" data-style="btn-warning">
-					<option value="Mumbai">Mumbai</option>
 					<option value="New York">New York</option>
+					<option value="Mumbai">Mumbai</option>
 					<option value="London">London</option>
 					<option value="Seoul">Seoul</option>
 				</select>
