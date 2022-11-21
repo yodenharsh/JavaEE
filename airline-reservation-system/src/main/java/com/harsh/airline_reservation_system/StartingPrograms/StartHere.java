@@ -1,6 +1,7 @@
 package com.harsh.airline_reservation_system.StartingPrograms;
 
 import java.sql.Connection;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.harsh.airline_reservation_system.UserInfo;
@@ -22,7 +23,11 @@ public class StartHere {
 				System.out.println(" 1. Signin\n 2. Signup\n 3. Forgot Password");
 			if (isAuth)
 				System.out.println(" 4. Change Password\n 5. Logout\n\n\n 10. Book and view flights");
+			try {
 			choice = sc.nextInt();
+			} catch(InputMismatchException e) {
+				choice = -1; //sets choice to default case
+			}
 			switch (choice) {
 			case 1:
 				if (isAuth) {
