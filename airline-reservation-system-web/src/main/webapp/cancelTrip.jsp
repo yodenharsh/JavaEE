@@ -25,7 +25,7 @@
 				<p class="mt-3">Don't know Flight ID? <a href="view-trips">View here</a></p>
 			</div>
 		</div>
-		<% Enumeration<String> attrList = request.getAttributeNames();
+		<% 
 		String cancellationSuccess = "";
 		try{
 		cancellationSuccess = (String)(request.getAttribute("deletedStatus"));
