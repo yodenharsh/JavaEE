@@ -10,7 +10,6 @@ public class ConnectToDB implements ConnectToDBInteface {
     	try{
     		Class.forName("com.mysql.jdbc.Driver");
     		Connection conn = DriverManager.getConnection(url,info);	
-    		System.out.println("Successfully connected to the database");
     		return conn;
     	} catch(SQLException e) {
     		System.out.println("An error occurred while connecting to the database");
