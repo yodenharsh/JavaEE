@@ -40,6 +40,12 @@
   	<description></description>
   	<servlet-class>com.harsh.airline_reservation_system_web.ui.ViewTrips</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CancelTrip</servlet-name>
+  	<display-name>CancelTrip</display-name>
+  	<description>Cancels the trip based on flightID entered by user</description>
+  	<servlet-class>com.harsh.airline_reservation_system_web.ui.CancelTrip</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ConfirmLogin</servlet-name>
   	<url-pattern>/confirm-login</url-pattern>
@@ -63,5 +69,9 @@
   <servlet-mapping>
   	<servlet-name>ViewTrips</servlet-name>
   	<url-pattern>/view-trips</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CancelTrip</servlet-name>
+  	<url-pattern>/cancel-trip</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -44,7 +44,7 @@ public class NewTrips extends HttpServlet {
 			bOps = new BookingOperationsImpl();
 		    if(bOps.bookTicket(resInfo, GetConnection.getConnection())) {
 		    	out.println("<h3>Booking successful</h3>");
-		    	out.println("<a href='./viewTrips.jsp'>Go back</a>");
+		    	out.println("<a href='view-trips'>Go back</a>");
 		    }
 		    else {
 		    	out.println("<h3>Booking unsuccessful</h3>");

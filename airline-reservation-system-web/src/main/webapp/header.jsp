@@ -22,7 +22,7 @@ if (cookies != null) {
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 	crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="./header.css">
+<link rel="stylesheet" type="text/css" href="./styles/header.css">
 </head>
 <body>
 
@@ -31,7 +31,7 @@ if (cookies != null) {
 <div class="container-fluid header">
 	<header>
 		<div style="display: inline-block">
-			<h1>Airline reservation system</h1>
+			<h1>Airline Reservation System</h1>
 		</div>
 		<nav class="main-nav mb-3">
 			<ul class="main-nav__items">

@@ -8,7 +8,7 @@
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css"
-	href="/assignment/styles/index.css">
+	href="./styles/index.css">
 <body>
 	<%@ include file="header.jsp"%>
 	<div class="container-fluid text-center">

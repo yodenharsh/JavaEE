@@ -11,6 +11,7 @@
 	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
 	crossorigin="anonymous">
 </head>
+<link rel="stylesheet" type="text/css" href="./styles/viewTrips.css">
 <body>
 <%@ include file="header.jsp" %>
 <% if(Boolean.parseBoolean(request.getAttribute("isEmpty").toString())){ %>
@@ -47,6 +48,9 @@
 <% }while(flightTable.next()); %>
   </tbody>
 </table>
+</div>
+<div class="mt-5 text-center link-container">
+	<a href="./cancelTrip.jsp">Cancel a flight? </a>
 </div>
 <% } %>
 </body>
