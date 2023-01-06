@@ -13,7 +13,7 @@ include file="/WEB-INF/styles/show-age.css"%>
 <body style="background: #060c21;">
 <header class="main-header dark-theme">
 <div class="title-container">
-	<a class="title">Age Calculator - made by Harsh Morayya</a>
+	<a class="title" href="/actalyst-webapp">Age Calculator - made by Harsh Morayya</a>
 	</div>
 </header>
 <div class="main-card">

@@ -50,21 +50,23 @@ public class RequestOps {
 	 * 
 	 * @return true if more than 500 else false
 	 */
-	public static boolean is500OrMore() {
+	public static int getRequestCount() {
 		Connection conn = getConnection();
 		String query = "SELECT COUNT(*) AS total FROM requests";
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			if (rs.getInt("total") >= 500)
-				return true;
+			while(rs.next())
+				return rs.getInt("total");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return 0;
 	}
 
+	
+	//Everything down below are helper fields and methods
 	private static String dbName = "actalyst";
 	private static String username = "root";
 	private static String password = "root";

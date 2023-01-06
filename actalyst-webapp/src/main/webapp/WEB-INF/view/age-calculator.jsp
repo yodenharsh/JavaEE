@@ -12,7 +12,6 @@
 <%@
 include file="/WEB-INF/styles/age-calculator.css"%>
 </style>
-<script type="text/javascript"><%@include file="/WEB-INF/js/age-calculator.js"%></script>
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <script
@@ -42,15 +41,11 @@ include file="/WEB-INF/styles/age-calculator.css"%>
 	<div class="inputBox">	
 		<input type="submit" value="Submit Details" />
 	</div>
+	<div class="request-count">
+	<p>We have processed <b>${requestCount}</b> request(s) so far</p>
+	</div>
 	</div>
 	</form:form>
 </div>
-	<%-- Equivalent of [ show if total requests on server are more than 500 ] --%>
-	<c:choose>
-		<c:when test="${crossed500}">
-			<p>We have crossed 500 requests</p>
-		</c:when>
-	</c:choose>
-
 </body>
 </html>

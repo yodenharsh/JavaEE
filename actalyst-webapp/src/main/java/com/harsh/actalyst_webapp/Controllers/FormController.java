@@ -18,6 +18,13 @@ import jakarta.validation.Valid;
 @Controller
 public class FormController {
 
+	/**
+	 * 
+	 * @param userDetails Form data containing DOB and name of user
+	 * @param theBindingResult Result after applying the validators
+	 * @param model Holds model attributes
+	 * @return the view to be visited after processing
+	 */
 	@RequestMapping("/processForm")
 	public String processForm(@Valid @ModelAttribute("userDetails") UserDetails userDetails,
 			BindingResult theBindingResult, Model model) {
