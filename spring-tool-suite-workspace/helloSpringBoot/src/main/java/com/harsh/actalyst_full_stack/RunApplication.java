@@ -1,13 +1,11 @@
-package com.harsh.springboot;
+package com.harsh.actalyst_full_stack;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelloSpringBootApplication {
-
+public class RunApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(HelloSpringBootApplication.class, args);
+		SpringApplication.run(RunApplication.class, args);
 	}
-
 }
