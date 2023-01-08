@@ -1,4 +1,4 @@
-package com.harsh.actalyst_webapp.Controllers;
+package com.harsh.actalyst_webapp.controllers;
 
 import java.time.Instant;
 import java.time.LocalDate;

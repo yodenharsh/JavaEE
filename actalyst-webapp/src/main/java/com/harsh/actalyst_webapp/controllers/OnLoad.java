@@ -1,4 +1,4 @@
-package com.harsh.actalyst_webapp.Controllers;
+package com.harsh.actalyst_webapp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
