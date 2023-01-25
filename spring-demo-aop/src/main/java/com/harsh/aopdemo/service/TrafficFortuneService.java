@@ -17,4 +17,13 @@ public class TrafficFortuneService {
 		
 		return "Expecting clear roads";
 	}
+
+	public String getTripwire(boolean tripwire) {
+		
+		if(tripwire) {
+			throw new RuntimeException("Can't proceed. Major roadblock ahead.");
+		}
+		
+		return getFortune();
+	}
 }

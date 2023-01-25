@@ -14,7 +14,6 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import com.harsh.aopdemo.Account;
-import com.harsh.aopdemo.AroundDemoApp;
 
 @Aspect
 @Component
@@ -26,13 +25,19 @@ public class MyDemoLoggingAspect {
 
 	
 	@Around("execution(* com.harsh.aopdemo.service.*.*(..))")
-	public Object aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+	public Object aroundGetFortune(ProceedingJoinPoint proceedingJoinPoint) {
 		
 		String method = proceedingJoinPoint.getSignature().toShortString();
 		myLogger.info("=======>>Execution @Around on "+method);
 		
 		long begin = System.currentTimeMillis();
-		Object result = proceedingJoinPoint.proceed();
+		Object result = null;
+		try {
+			result = proceedingJoinPoint.proceed();
+		} catch (Throwable e) {
+			myLogger.warning(e.getMessage());
+			result = "Major roadblock but it will be handled";
+		}
 		
 		long end = System.currentTimeMillis();
 		long duration = end - begin;
