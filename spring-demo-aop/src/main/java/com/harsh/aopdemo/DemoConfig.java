@@ -8,5 +8,5 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @EnableAspectJAutoProxy
 @ComponentScan("com.harsh.aopdemo")
 public class DemoConfig {
-	
+
 }
